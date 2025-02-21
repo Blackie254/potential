@@ -264,6 +264,12 @@
             border-radius: 5px;
         }
 
+        /* Downloads Section */
+        #downloads {
+            padding: 2rem 0; /* Reduced padding */
+            text-align: center;
+        }
+
         /* Social Media Section */
         #social-media {
             padding: 2rem 0; /* Reduced padding */
@@ -327,6 +333,7 @@
             <li><a href="#testimonials"><i class="fas fa-comments"></i>Testimonials</a></li>
             <li><a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
             <li><a href="#newsletter"><i class="fas fa-envelope"></i>Newsletter</a></li>
+            <li><a href="#downloads"><i class="fas fa-download"></i>Downloads</a></li>
             <li><a href="https://wa.me/254114283550" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a></li>
         </ul>
         <button id="darkModeToggle" class="buy-btn">Toggle Dark Mode</button>
@@ -396,6 +403,25 @@
             </div>
         </section>
 
+        <!-- New Products Section -->
+        <section class="section" id="new-products">
+            <h1>New Arrivals</h1>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="new-product1.jpg" alt="New Product" class="product-image">
+                    <h3 class="product-title">New Product 1</h3>
+                    <p>Description of new product 1.</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="new-product2.jpg" alt="New Product" class="product-image">
+                    <h3 class="product-title">New Product 2</h3>
+                    <p>Description of new product 2.</p>
+                    <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+        </section>
+
         <!-- Video Section -->
         <section class="section" id="video-ads">
             <h1>Watch Our Latest Ads</h1>
@@ -404,6 +430,19 @@
                 Your browser does not support the video tag.
             </video>
             <p>Check out our latest products in action!</p>
+        </section>
+
+        <!-- Downloads Section -->
+        <section class="section" id="downloads">
+            <h1>Download Our App</h1>
+            <p>Get our app for the best experience!</p>
+            <a href="https://play-store-apps-apk.blogspot.com/2024/11/ar-tunnel-vpn-unlimited.html" class="buy-btn">Download App</a>
+            
+            <h1>Video Tutorials</h1>
+            <video controls>
+                <source src="vid.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </section>
 
         <!-- Testimonials Section -->
@@ -452,10 +491,11 @@
         <!-- Newsletter Section -->
         <section class="section" id="newsletter">
             <h1>Subscribe to Our Newsletter</h1>
-            <form>
+            <form id="newsletterForm">
                 <input type="email" placeholder="Enter your email" required>
                 <button class="buy-btn" type="submit">Subscribe</button>
             </form>
+            <div id="confirmationMessage" style="display:none;">Thank you for subscribing!</div>
         </section>
 
         <!-- Social Media Section -->
@@ -563,6 +603,14 @@
         // Loading Animation
         window.addEventListener('load', () => {
             document.getElementById('loading').style.display = 'none';
+        });
+
+        // AJAX for Newsletter Subscription
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate AJAX request
+            document.getElementById('confirmationMessage').style.display = 'block';
+            this.reset(); // Reset form
         });
     </script>
 </body>
