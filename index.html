@@ -25,7 +25,6 @@
             background: var(--dark-bg);
             color: rgb(15, 220, 28);
             overflow-x: hidden;
-            font-size: 16px; /* Base font size for better readability */
         }
 
         #particles-js {
@@ -42,8 +41,8 @@
         }
 
         .navbar .nav-link {
-            color: rgb(211, 12, 221);
-            margin: 0 0.5rem; /* Reduced margin for smaller screens */
+            color: rgb(201, 11, 222);
+            margin: 0 1rem;
         }
 
         .navbar .nav-link:hover {
@@ -63,7 +62,7 @@
         }
 
         .section h1 {
-            font-size: 2.5rem; /* Smaller heading size for mobile */
+            font-size: 3rem;
             margin-bottom: 2rem;
             color: var(--neon-cyan);
         }
@@ -71,7 +70,7 @@
         /* Product Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             justify-content: center; /* Center the grid */
         }
@@ -92,13 +91,13 @@
 
         .product-image {
             width: 100%;
-            height: 150px; /* Smaller image height for mobile */
+            height: 200px;
             object-fit: cover;
             border-radius: 10px;
         }
 
         .product-title {
-            font-size: 1.2rem; /* Smaller product title for mobile */
+            font-size: 1.5rem;
             margin: 1rem 0;
             color: var(--neon-pink);
         }
@@ -106,13 +105,14 @@
         .buy-btn {
             background: var(--neon-cyan);
             color: black;
-            padding: 0.5rem; /* Adjust button padding for mobile */
+            padding: 0.75rem 1.5rem; /* Increased padding for better touch targets */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            font-size: 1.1rem; /* Larger text for visibility */
         }
 
         .buy-btn:hover {
@@ -126,7 +126,7 @@
             right: 2rem;
             background: #25D366;
             color: white;
-            padding: 0.5rem 1rem; /* Adjust padding for the WhatsApp button */
+            padding: 1rem 2rem;
             border-radius: 30px;
             text-decoration: none;
             display: flex;
@@ -141,14 +141,19 @@
             box-shadow: 0 0 20px #25D366;
         }
 
-        /* Media Queries for further adjustments */
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .main-content {
-                padding: 2rem; /* Reduced padding for mobile */
+            .navbar {
+                font-size: 0.9rem; /* Smaller font size for mobile */
             }
 
-            .section {
-                padding: 2rem 0; /* Adjust section padding */
+            .section h1 {
+                font-size: 2rem; /* Smaller title size */
+            }
+
+            .buy-btn {
+                padding: 0.75rem 1.5rem; /* Increased padding for better touch targets */
+                font-size: 1.1rem; /* Larger text for visibility */
             }
         }
     </style>
@@ -156,29 +161,27 @@
 <body>
     <div id="particles-js"></div>
     
-    <!-- Top Navigation -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand animate-glow" href="#">MERCHANTS POTENTIAL UNLEASHED</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="#home"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products"><i class="fas fa-robot"></i> Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services"><i class="fas fa-cogs"></i> Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#video-ads"><i class="fas fa-video"></i> Video Ads</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fas fa-comments"></i> Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#newsletter"><i class="fas fa-envelope"></i> Newsletter</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://wa.me/254114283550" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <!-- Main Content -->
     <main class="main-content">
         <!-- Home Section -->
         <section class="section" id="home">
             <h1>Welcome to the Future</h1>
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" href="#home"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#products"><i class="fas fa-robot"></i> Products</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#services"><i class="fas fa-cogs"></i> Services</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#video-ads"><i class="fas fa-video"></i> Video Ads</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fas fa-comments"></i> Testimonials</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#newsletter"><i class="fas fa-envelope"></i> Newsletter</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://wa.me/254114283550" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
             <div class="products-grid">
                 <div class="product-card">
                     <img src="1.jpg" alt="AI Robot" class="product-image">
@@ -241,22 +244,11 @@
         <!-- Video Section -->
         <section class="section" id="video-ads">
             <h1>Watch Our Latest Ads</h1>
-            <video controls poster="thumbnail.jpg" style="max-width: 100%; height: auto;">
+            <video controls poster="thumbnail.jpg">
                 <source src="horror.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <p>Check out our latest products in action!</p>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="section" id="testimonials">
-            <h1>What Our Customers Say</h1>
-            <div class="testimonial">
-                <p>"Great products! Highly recommend!" - Kennedy Rop</p>
-            </div>
-            <div class="testimonial">
-                <p>"Excellent service and support!" - Joy Annastacia</p>
-            </div>
         </section>
 
         <!-- Newsletter Subscription -->
