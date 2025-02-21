@@ -216,6 +216,19 @@
             max-width: 400px; /* Adjusted max width */
         }
 
+        /* New Products and Video Ads Section */
+        #products-and-video-ads {
+            text-align: center;
+            padding: 2rem 0; /* Reduced padding */
+        }
+
+        #products-and-video-ads video {
+            border-radius: 10px;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 600px; /* Adjusted max width */
+        }
+
         /* Testimonials Section */
         #testimonials {
             text-align: center;
@@ -403,23 +416,31 @@
             </div>
         </section>
 
-        <!-- New Products Section -->
-        <section class="section" id="new-products">
-            <h1>New Arrivals</h1>
+        <!-- New Products and Video Ads Section -->
+        <section class="section" id="products-and-video-ads">
+            <h1>Featured Products and Video Ads</h1>
+            
             <div class="products-grid">
                 <div class="product-card">
-                    <img src="new-product1.jpg" alt="New Product" class="product-image">
-                    <h3 class="product-title">New Product 1</h3>
-                    <p>Description of new product 1.</p>
+                    <img src="featured-product1.jpg" alt="Featured Product 1" class="product-image">
+                    <h3 class="product-title">Featured Product 1</h3>
+                    <p>Description of featured product 1.</p>
                     <a href="#" class="buy-btn">Buy Now</a>
                 </div>
                 <div class="product-card">
-                    <img src="new-product2.jpg" alt="New Product" class="product-image">
-                    <h3 class="product-title">New Product 2</h3>
-                    <p>Description of new product 2.</p>
+                    <img src="featured-product2.jpg" alt="Featured Product 2" class="product-image">
+                    <h3 class="product-title">Featured Product 2</h3>
+                    <p>Description of featured product 2.</p>
                     <a href="#" class="buy-btn">Buy Now</a>
                 </div>
             </div>
+
+            <h2>Watch Our Latest Video Ads</h2>
+            <video controls poster="thumbnail.jpg" style="width: 100%; max-width: 600px;">
+                <source src="latest-video-ad.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>Check out our latest products in action!</p>
         </section>
 
         <!-- Video Section -->
@@ -440,7 +461,7 @@
             
             <h1>Video Tutorials</h1>
             <video controls>
-                <source src="vid.mp4" type="video/mp4">
+                <source src="king.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </section>
