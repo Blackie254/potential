@@ -159,13 +159,14 @@
         .buy-btn {
             background: var(--neon-cyan);
             color: black;
-            padding: 0.5rem 0.8rem; /* Adjusted padding */
+            padding: 0.8rem; /* Adjusted padding */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            width: 100%; /* Full width for better accessibility on mobile */
         }
 
         .buy-btn:hover {
@@ -186,6 +187,7 @@
             gap: 0.5rem; /* Reduced gap */
             font-size: 1rem; /* Smaller font size */
             transition: all 0.3s;
+            z-index: 1000; /* Ensure it stays on top */
         }
 
         .whatsapp-btn:hover {
@@ -267,11 +269,11 @@
 
         #newsletter form {
             display: flex;
+            flex-direction: column; /* Stack fields vertically */
             gap: 0.5rem;
         }
 
         #newsletter input {
-            flex: 1;
             padding: 0.5rem;
             border: 1px solid var(--neon-cyan);
             border-radius: 5px;
@@ -323,6 +325,10 @@
 
             .section h1 {
                 font-size: 1.5rem; /* Smaller section heading */
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr; /* Stack products vertically */
             }
         }
     </style>
@@ -461,7 +467,7 @@
             
             <h1>Video Tutorials</h1>
             <video controls>
-                <source src="king.mp4" type="video/mp4">
+                <source src="vid.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </section>
@@ -513,6 +519,7 @@
         <section class="section" id="newsletter">
             <h1>Subscribe to Our Newsletter</h1>
             <form id="newsletterForm">
+                <input type="text" placeholder="Enter your name" required>
                 <input type="email" placeholder="Enter your email" required>
                 <button class="buy-btn" type="submit">Subscribe</button>
             </form>
