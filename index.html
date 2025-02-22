@@ -97,6 +97,24 @@
             padding: 1rem;
         }
 
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
         .section {
             min-height: 100vh;
             padding: 2rem 0;
@@ -376,17 +394,11 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Home Section -->
-        <section class="section" id="home">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
             <h1>Welcome to the Future</h1>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="1.jpg" alt="AI Robot" class="product-image">
-                    <h3 class="product-title">AI-Powered Robots</h3>
-                    <p>Next-generation intelligent machines for home and industry</p>
-                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20AI-Powered%20Robots" class="buy-btn">Buy Now</a>
-                </div>
-            </div>
+            <p>Your one-stop solution for innovative tech products.</p>
+            <a href="#products" class="buy-btn">Explore Products</a>
         </section>
 
         <!-- Products Section -->
@@ -469,7 +481,7 @@
             </div>
         </section>
 
-        <!-- New Products and Video Ads Section -->
+        <!-- Featured Products and Video Ads Section -->
         <section class="section" id="products-and-video-ads">
             <h1>Featured Products and Video Ads</h1>
             
@@ -490,7 +502,7 @@
 
             <h2>Watch Our Latest Video Ads</h2>
             <video controls poster="thumbnail.jpg" style="width: 100%; max-width: 600px;">
-                <source src=".mp4" type="video/mp4">
+                <source src="horror.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <p>Check out our latest products in action!</p>
