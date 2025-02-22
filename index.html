@@ -50,6 +50,7 @@
             backdrop-filter: blur(10px);
             padding: 0.5rem;
             border-right: 2px solid var(--neon-cyan);
+            transition: all 0.3s;
         }
 
         .logo {
@@ -95,6 +96,7 @@
         .main-content {
             margin-left: 180px;
             padding: 0.5rem;
+            transition: margin-left 0.3s;
         }
 
         .hero {
@@ -258,6 +260,24 @@
             text-decoration: none;
         }
 
+        /* Blog Section */
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: scale(1.02);
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .sidebar {
@@ -307,11 +327,11 @@
             <li><a href="#home" class="active"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#products"><i class="fas fa-robot"></i>Products</a></li>
             <li><a href="#services"><i class="fas fa-cogs"></i>Services</a></li>
-            <li><a href="#video-ads"><i class="fas fa-video"></i>Video Ads</a></li>
             <li><a href="#testimonials"><i class="fas fa-comments"></i>Testimonials</a></li>
             <li><a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
             <li><a href="#newsletter"><i class="fas fa-envelope"></i>Newsletter</a></li>
             <li><a href="#downloads"><i class="fas fa-download"></i>Downloads</a></li>
+            <li><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
             <li><a href="https://wa.me/254114283550" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a></li>
         </ul>
         <button id="darkModeToggle" class="buy-btn">Toggle Dark Mode</button>
@@ -406,10 +426,9 @@
             </div>
         </section>
 
-        <!-- Featured Products and Video Ads Section -->
+        <!-- Featured Products Section -->
         <section class="section" id="products-and-video-ads">
-            <h1>Featured Products and Video Ads</h1>
-            
+            <h1>Featured Products</h1>
             <div class="products-grid">
                 <div class="product-card">
                     <img src="featured-product1.jpg" alt="Featured Product 1" class="product-image">
@@ -423,37 +442,6 @@
                     <p>Description of featured product 2.</p>
                     <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20codding%20class" class="buy-btn">Buy Now</a>
                 </div>
-            </div>
-
-            <h2>Watch Our Latest Video Ads</h2>
-            <div class="embed-responsive embed-responsive-16by9">
-                <video controls class="embed-responsive-item" poster="thumbnail.jpg">
-                    <source src="horror.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <p>Check out our latest products in action!</p>
-        </section>
-
-        <!-- Video Section -->
-        <section class="section" id="video-ads">
-            <h1>Watch Our Latest Ads</h1>
-            <div class="embed-responsive embed-responsive-16by9">
-                <video controls class="embed-responsive-item" poster="thumbnail.jpg">
-                    <source src="horror.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <p>Check out our latest products in action!</p>
-        </section>
-
-        <!-- Share Section -->
-        <section class="section" id="share">
-            <h1>Share This Video</h1>
-            <div>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_VIDEO_URL" target="_blank" class="buy-btn">Share on Facebook</a>
-                <a href="https://twitter.com/intent/tweet?url=YOUR_VIDEO_URL" target="_blank" class="buy-btn">Share on Twitter</a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=YOUR_VIDEO_URL" target="_blank" class="buy-btn">Share on LinkedIn</a>
             </div>
         </section>
 
@@ -475,13 +463,29 @@
         <!-- Testimonials Section -->
         <section class="section" id="testimonials">
             <h1>What Our Customers Say</h1>
-            <div class="testimonial">
-                <img src="c1.jpg" alt="Customer" class="testimonial-image">
-                <p>"Great products! Highly recommend!" - Kennedy Rop</p>
-            </div>
-            <div class="testimonial">
-                <img src="c2.jpg" alt="Customer" class="testimonial-image">
-                <p>"Excellent service and support!" - Joy Annastacia</p>
+            <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial">
+                            <img src="c1.jpg" alt="Customer" class="testimonial-image">
+                            <p>"Great products! Highly recommend!" - Kennedy Rop</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <img src="c2.jpg" alt="Customer" class="testimonial-image">
+                            <p>"Excellent service and support!" - Joy Annastacia</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </section>
 
@@ -524,6 +528,23 @@
                 <button class="buy-btn" type="submit">Subscribe</button>
             </form>
             <div id="confirmationMessage" style="display:none;">Thank you for subscribing!</div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section" id="blog">
+            <h1>Latest Blog Posts</h1>
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <h2>Understanding AI in Everyday Life</h2>
+                    <p>Explore how artificial intelligence is transforming our daily routines.</p>
+                    <a href="#" class="buy-btn">Read More</a>
+                </article>
+                <article class="blog-post">
+                    <h2>Top 10 Tech Gadgets of 2025</h2>
+                    <p>Discover the must-have gadgets that are changing the tech landscape.</p>
+                    <a href="#" class="buy-btn">Read More</a>
+                </article>
+            </div>
         </section>
 
         <!-- Social Media Section -->
@@ -619,10 +640,17 @@
         const toggleButton = document.getElementById('darkModeToggle');
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
+            toggleButton.textContent = document.body.classList.contains('light-mode') ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+            localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark');
         });
 
-        // Loading Animation
+        // Load dark mode preference
         window.addEventListener('load', () => {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'light') {
+                document.body.classList.add('light-mode');
+                toggleButton.textContent = 'Toggle Dark Mode';
+            }
             document.getElementById('loading').style.display = 'none';
         });
 
