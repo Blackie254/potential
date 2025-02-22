@@ -125,7 +125,7 @@
         /* Product Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted for smaller screens */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Default for larger screens */
             gap: 1rem; /* Reduced gap */
         }
 
@@ -328,7 +328,9 @@
             }
 
             .products-grid {
-                grid-template-columns: 1fr; /* Stack products vertically */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for mobile */
+                grid-auto-flow: column; /* Arrange items in a row */
+                overflow-x: auto; /* Allow horizontal scrolling */
             }
         }
     </style>
