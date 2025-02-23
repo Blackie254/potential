@@ -294,6 +294,20 @@
             transform: scale(1.02);
         }
 
+        /* Colorful Effect */
+        #colorfulEffect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 10; /* Ensure it appears above other elements */
+            background: radial-gradient(circle, var(--neon-cyan), var(--neon-pink), transparent);
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .sidebar {
@@ -571,6 +585,7 @@
                 <button class="buy-btn" type="submit">Subscribe</button>
             </form>
             <div id="confirmationMessage" style="display:none;">Thank you for subscribing!</div>
+            <div id="colorfulEffect" style="display:none;"></div> <!-- New div for colorful effect -->
         </section>
 
         <!-- Blog Section -->
@@ -580,12 +595,12 @@
                 <article class="blog-post">
                     <h2>Understanding AI in Everyday Life</h2>
                     <p>Explore how artificial intelligence is transforming our daily routines.</p>
-                    <a href="#" class="buy-btn">Read More</a>
+                    <a href="#" class="buy-btn">AI is becoming an integral part of everyday life, enhancing convenience, efficiency, and decision-making. From voice assistants like Siri and Alexa to personalized recommendations on streaming services and e-commerce platforms, AI helps automate tasks and improve user experiences. It also plays a crucial role in healthcare, finance, and transportation, optimizing processes and enabling smarter solutions. While AI offers numerous benefits, it is essential to use it responsibly, ensuring ethical considerations like privacy, fairness, and transparency are upheld.</a>
                 </article>
                 <article class="blog-post">
                     <h2>Top 10 Tech Gadgets of 2025</h2>
                     <p>Discover the must-have gadgets that are changing the tech landscape.</p>
-                    <a href="#" class="buy-btn">Read More</a>
+                    <a href="#" class="buy-btn">Smartphones.</a>
                 </article>
             </div>
         </section>
@@ -622,7 +637,7 @@
         <footer class="section" id="footer">
             <h1>Connect with Us</h1>
             <ul>
-                <li><a href="#black-merchant">Black Merchant</a></li>
+                <li><a href="#black-merchant">manoastephen14@gmail.com</a></li>
                 <li><a href="#partnership">Partnership</a></li>
                 <li><a href="#collaboration">Collaboration</a></li>
             </ul>
@@ -716,9 +731,25 @@
         // AJAX for Newsletter Subscription
         document.getElementById('newsletterForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Simulate AJAX request
+            
+            // Show confirmation message
             document.getElementById('confirmationMessage').style.display = 'block';
-            this.reset(); // Reset form
+            
+            // Show colorful effect
+            const colorfulEffect = document.getElementById('colorfulEffect');
+            colorfulEffect.style.display = 'block';
+            colorfulEffect.style.opacity = '1'; // Make it visible
+
+            // Reset form
+            this.reset(); 
+
+            // Hide colorful effect after a delay
+            setTimeout(() => {
+                colorfulEffect.style.opacity = '0'; // Fade out
+                setTimeout(() => {
+                    colorfulEffect.style.display = 'none'; // Hide after fade out
+                }, 500); // Match the duration of the fade out
+            }, 2000); // Show for 2 seconds
         });
 
         // Back to Top Button
