@@ -28,11 +28,13 @@
             background: var(--dark-bg);
             color: var(--text-color);
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         .light-mode {
             background: var(--light-bg);
             color: var(--light-text-color);
+            transition: background 0.3s, color 0.3s;
         }
 
         #particles-js {
@@ -356,7 +358,9 @@
             <li><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
             <li><a href="https://wa.me/254114283550" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a></li>
         </ul>
-        <button id="darkModeToggle" class="buy-btn">Toggle Dark Mode</button>
+        <button id="darkModeToggle" class="buy-btn">
+            <i id="modeIcon" class="fas fa-moon"></i> Toggle Dark Mode
+        </button>
     </nav>
 
     <!-- Main Content -->
@@ -675,9 +679,21 @@
 
         // Dark Mode Toggle
         const toggleButton = document.getElementById('darkModeToggle');
+        const modeIcon = document.getElementById('modeIcon');
+
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
-            toggleButton.textContent = document.body.classList.contains('light-mode') ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+            
+            if (document.body.classList.contains('light-mode')) {
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+                toggleButton.textContent = ' Toggle Light Mode';
+            } else {
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+                toggleButton.textContent = ' Toggle Dark Mode';
+            }
+            
             localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark');
         });
 
@@ -686,9 +702,10 @@
             const darkMode = localStorage.getItem('darkMode');
             if (darkMode === 'light') {
                 document.body.classList.add('light-mode');
-                toggleButton.textContent = 'Toggle Dark Mode';
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+                toggleButton.textContent = ' Toggle Light Mode';
             }
-            document.getElementById('loading').style.display = 'none';
         });
 
         // AJAX for Newsletter Subscription
