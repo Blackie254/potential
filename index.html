@@ -621,7 +621,7 @@
             <ul>
                 <li><a href="https://wa.me/254114283550" target="_blank">WhatsApp</a></li>
                 <li><a href="https://instagram.com/@cryptoboy22" target="_blank">Instagram</a></li>
-                <li><a href="https://t.me/lilstevie" target="_blank">Telegram</a></li>
+                <li><a href="https://t.me/@lilstevie" target="_blank">Telegram</a></li>
                 <li><a href="https://tiktok.com/@wealthymindsetfx" target="_blank">Tiktok</a></li>
             </ul>
         </section>
@@ -703,6 +703,8 @@
 
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
+            
+            console.log('Toggled light mode:', document.body.classList.contains('light-mode'));
             
             if (document.body.classList.contains('light-mode')) {
                 modeIcon.classList.remove('fa-moon');
