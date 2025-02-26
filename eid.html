@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Greeting</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            z-index: 2; /* Ensure content is above background */
+        }
+
+        .glowing-text {
+            font-size: 3em;
+            color: #ffcc00;
+            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ffcc00;
+            margin: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            font-size: 2em;
+            color: #ed0ce5;
+            margin-top: 20px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Fullscreen video background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0; /* Behind everything */
+        }
+
+        /* Button styles */
+        .play-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .play-button:hover {
+            background-color: #e60051;
+        }
+
+        /* Mosque image styles */
+        .mosque {
+            position: absolute;
+            bottom: 20px; /* Adjusted to provide space from the bottom */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            width: 200px; /* Adjusted size */
+            height: auto;
+            z-index: 1; /* Behind the content */
+            filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.7)); /* Glow effect */
+        }
+
+        /* Navigation styles */
+        .nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3; /* Above everything */
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay loop muted>
+        <source src="ei.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <h1 class="glowing-text">TAQABBAL ALLAHU MINNA WA MINKUM</h1>
+        <div class="message">Wishing you a blessed Eid filled with joy and happiness!</div>
+        
+        <!-- Play Button -->
+        <button class="play-button" id="play-button">Play❤️🥰❤️‍🩹</button>
+    </div>
+    
+    <img src="mu.jpg" alt="Mosque" class="mosque"> <!-- Add your mosque image here -->
+    
+    <audio id="background-music" loop>
+        <source src="Best_Nasheeds_of_All_time___Lofi_slowed_and_Reverb__listen_while_studying,working(256k).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        const audio = document.getElementById('background-music');
+        const playButton = document.getElementById('play-button');
+
+        playButton.addEventListener('click', function() {
+            audio.play().then(() => {
+                console.log('Audio is playing');
+                playButton.style.display = 'none'; // Hide the button after playing
+            }).catch((error) => {
+                console.log('Audio playback failed:', error);
+            });
+        });
+    </script>
+    <div class="nav">
+        <a href="eid.html">Go to Eid Greeting</a>
+        <a href="merchant.html">Go to Merchants Potential Unleashed</a>
+        <a href="blacky.html">Go to Ultimate Blacky Nightmare</a>
+    </div>
+</body>
+</html>

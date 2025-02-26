@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchants Potential Unleashed | Future Tech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --neon-cyan: #0ff;
+            --neon-pink: #f0f;
+            --dark-bg: #0a0a0a;
+            --light-bg: #ffffff;
+            --text-color: #0f0;
+            --light-text-color: #000;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .light-mode {
+            background: var(--light-bg);
+            color: var(--light-text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure particles are behind other content */
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 220px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-right: 2px solid var(--neon-cyan);
+            transition: all 0.3s;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0.5rem 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a i {
+            margin-right: 0.5rem;
+            color: var(--neon-pink);
+        }
+
+        .nav-links a:hover {
+            background: var(--neon-pink);
+            color: black;
+        }
+
+        .nav-links a.active {
+            background: var(--neon-pink);
+            color: black;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 220px;
+            padding: 1rem;
+            transition: margin-left 0.3s;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.2); /* Adjust opacity for better visibility */
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .section {
+            min-height: 30vh;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Adjust opacity for better visibility */
+        }
+
+        .section h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--neon-cyan);
+            text-align: center;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 5px;
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
+            justify-content: space-between; /* Space out children */
+            height: 100%; /* Ensure the card takes full height */
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1rem;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: var(--neon-pink);
+        }
+
+        .buy-btn {
+            background: var(--neon-cyan);
+            color: black;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            margin-top: auto; /* Push the button to the bottom */
+        }
+
+        .buy-btn:hover {
+            background: var(--neon-pink);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #25D366;
+        }
+
+        /* Testimonials Section */
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        /* Footer Section */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin: 0.5rem 0;
+        }
+
+        footer ul li a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+
+        /* Blog Section */
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: scale(1.02);
+        }
+
+        /* Colorful Effect */
+        #colorfulEffect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 10; /* Ensure it appears above other elements */
+            background: radial-gradient(circle, var(--neon-cyan), var(--neon-pink), transparent);
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .section h1 {
+                font-size: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--neon-cyan);
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: none;
+            transition: all 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: var(--neon-pink);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div> <!-- Particles Background -->
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="logo animate-glow">MERCHANTS POTENTIAL UNLEASHED</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." aria-label="Search">
+            <button class="buy-btn">Search</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#products"><i class="fas fa-robot"></i>Products</a></li>
+            <li><a href="#services"><i class="fas fa-cogs"></i>Services</a></li>
+            <li><a href="#testimonials"><i class="fas fa-comments"></i>Testimonials</a></li>
+            <li><a href="#faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
+            <li><a href="#newsletter"><i class="fas fa-envelope"></i>Newsletter</a></li>
+            <li><a href="#downloads"><i class="fas fa-download"></i>Downloads</a></li>
+            <li><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
+            <li><a href="https://wa.me/254114283550" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a></li>
+        </ul>
+        <button id="darkModeToggle" class="buy-btn">
+            <i id="modeIcon" class="fas fa-moon"></i> Toggle Dark Mode
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>Welcome to the Future</h1>
+            <p>Your one-stop solution for innovative tech products.</p>
+            <a href="#products" class="buy-btn">Explore Products</a>
+        </section>
+
+        <!-- Products Section -->
+        <section class="section" id="products">
+            <h1>Our Products</h1>
+            <div id="productCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="b.jpg" class="d-block w-100" alt="Electric Bike">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Image Creation</h5>
+                            <p>Providing High-quality pictures with Username tags</p>
+                            <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20Electric%20Bikes" class="buy-btn">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="c.jpg" class="d-block w-100" alt="Future Car">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Adventurous Wallpapers</h5>
+                            <p>Fancy adventure unrealistic wallpapers with a touch of Nature</p>
+                            <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20Fancy%20Wallpapers" class="buy-btn">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="a.jpg" class="d-block w-100" alt="Smart Home">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Smart phone Systems</h5>
+                            <p>Affordable high capacity mobile smartphone solutions</p>
+                            <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20Smart%20Home%20Systems" class="buy-btn">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="f.jpg" class="d-block w-100" alt="Drones">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Advanced Drones</h5>
+                            <p>High-tech drones for various applications</p>
+                            <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20Advanced%20Drones" class="buy-btn">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- New Products Section -->
+        <section class="section" id="new-products">
+            <h1>New Arrivals</h1>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="a.jpg" alt="New Product 1" class="product-image">
+                    <h3 class="product-title">Gaming Headset</h3>
+                    <p>Immerse yourself in the ultimate gaming experience with this high-quality headset. Featuring a futuristic design, glowing LED accents, and a comfortable fit, it delivers superior sound quality and a noise-isolating microphone for clear communication.</p>
+                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20gaming%20headset" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="b.jpg" alt="New Product 2" class="product-image">
+                    <h3 class="product-title">Smart home Speaker</h3>
+                    <p>Upgrade your home with this voice-controlled smart speaker. With a sleek cylindrical design and glowing LED indicators, it delivers high-quality sound, smart assistant integration, and hands-free control for your smart devices.</p>
+                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20smarthome%20speakers" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="d.jpg" alt="New Product 3" class="product-image">
+                    <h3 class="product-title">Smart watch</h3>
+                    <p>Stay connected and track your fitness with this stylish smartwatch. Featuring a round display, sleek black design, and advanced health monitoring features, it’s the perfect companion for an active lifestyle.</p>
+                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20smartwatch%20" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="f.jpg" alt="New Product 4" class="product-image">
+                    <h3 class="product-title">Smartphones</h3>
+                    <p>Experience cutting-edge technology with this sleek smartphone featuring an edge-to-edge display, premium metallic finish, and a high-resolution camera. Designed for performance and style, it's perfect for work, play, and everything in between.</p>
+                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20smartphones%20" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="section" id="products-and-video-ads">
+            <h1>Featured Products</h1>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="c.jpg" alt="Featured Product 1" class="product-image">
+                    <h3 class="product-title">Wireless Earbuds</h3>
+                    <p>Enjoy crystal-clear sound with these premium wireless earbuds. Designed with a futuristic look and a comfortable fit, they offer noise cancellation, long battery life, and seamless Bluetooth connectivity.</p>
+                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20wireless%20earbuds" class="buy-btn">Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="e.jpg" alt="Featured Product 2" class="product-image">
+                    <h3 class="product-title">High End Laptops</h3>
+                    <p>A powerful yet lightweight laptop with a stunning display, illuminated keyboard, and ultra-slim design. Whether you're a professional or a gamer, this laptop delivers top-tier performance and long battery life for all your computing needs.</p>
+                    <a href="https://wa.me/254114283550?text=Hello%20sir%20I%20need%20your%20service%20for%20highend%20laptops" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="section" id="video-ads">
+            <h1>Watch Our Latest Ads</h1>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video controls class="embed-responsive-item" poster="thumbnail.jpg">
+                    <source src="horror.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>Check out our latest products in action!</p>
+        </section>
+
+        <!-- Downloads Section -->
+        <section class="section" id="downloads">
+            <h1>Download Our App</h1>
+            <p>Get our app for the best experience!</p>
+            <a href="https://play-store-apps-apk.blogspot.com/2024/11/ar-tunnel-vpn-unlimited.html" class="buy-btn">Download App</a>
+            
+            <h1>Video Tutorials</h1>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video controls class="embed-responsive-item">
+                    <source src="king.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section" id="testimonials">
+            <h1>What Our Customers Say</h1>
+            <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial">
+                            <img src="c1.jpg" alt="Customer" class="testimonial-image">
+                            <p>"Great products! Highly recommend!" - Kennedy Rop</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <img src="c2.jpg" alt="Customer" class="testimonial-image">
+                            <p>"Excellent service and support!" - Joy Annastacia</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section" id="faq">
+            <h1>Frequently Asked Questions</h1>
+            <div class="faq-item">
+                <h3>What is your return policy?</h3>
+                <p>We offer a 30-day return policy on all products.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I contact support?</h3>
+                <p>You can reach us via the contact section or through WhatsApp.</p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <h1>Our Services</h1>
+            <div class="products-grid">
+                <div class="product-card">
+                    <i class="fas fa-microchip fa-3x"></i>
+                    <h3 class="product-title">AI Integration</h3>
+                    <p>Custom artificial intelligence solutions</p>
+                </div>
+                <div class="product-card">
+                    <i class="fas fa-cogs fa-3x"></i>
+                    <h3 class="product-title">Tech Support</h3>
+                    <p>24/7 technical support for all products</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="section" id="newsletter">
+            <h1>Subscribe to Our Newsletter</h1>
+            <form id="newsletterForm">
+                <input type="text" placeholder="Enter your name" required>
+                <input type="email" placeholder="Enter your email" required>
+                <button class="buy-btn" type="submit">Subscribe</button>
+            </form>
+            <div id="confirmationMessage" style="display:none;">Thank you for subscribing!</div>
+            <div id="colorfulEffect" style="display:none;"></div> <!-- New div for colorful effect -->
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section" id="blog">
+            <h1>Latest Blog Posts</h1>
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <h2>Understanding AI in Everyday Life</h2>
+                    <p>Explore how artificial intelligence is transforming our daily routines.</p>
+                    <a href="#" class="buy-btn">AI is becoming an integral part of everyday life, enhancing convenience, efficiency, and decision-making. From voice assistants like Siri and Alexa to personalized recommendations on streaming services and e-commerce platforms, AI helps automate tasks and improve user experiences. It also plays a crucial role in healthcare, finance, and transportation, optimizing processes and enabling smarter solutions. While AI offers numerous benefits, it is essential to use it responsibly, ensuring ethical considerations like privacy, fairness, and transparency are upheld.</a>
+                </article>
+                <article class="blog-post">
+                    <h2>Top 10 Tech Gadgets of 2025</h2>
+                    <p>Discover the must-have gadgets that are changing the tech landscape.</p>
+                    <a href="#" class="buy-btn">Smartphones.</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section id="social-media">
+            <h2>Follow Us</h2>
+            <ul>
+                <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <ul>
+                <li><a href="https://wa.me/254114283550" target="_blank">WhatsApp</a></li>
+                <li><a href="https://instagram.com/@cryptoboy22" target="_blank">Instagram</a></li>
+                <li><a href="https://t.me/@lilstevie" target="_blank">Telegram</a></li>
+                <li><a href="https://tiktok.com/@wealthymindsetfx" target="_blank">Tiktok</a></li>
+            </ul>
+        </section>
+
+        <!-- Join WhatsApp Group Section -->
+        <section class="section" id="join-group">
+            <h1>Join Our WhatsApp Group</h1>
+            <p>Stay updated with our latest products and services. Join our community!</p>
+            <a href="https://chat.whatsapp.com/CtvPN0aDdpE5HVjFLtXgAr" class="buy-btn">Join Now</a>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="section" id="footer">
+            <h1>Connect with Us</h1>
+            <ul>
+                <li><a href="#black-merchant">manoastephen14@gmail.com</a></li>
+                <li><a href="#partnership">Partnership</a></li>
+                <li><a href="#collaboration">Collaboration</a></li>
+            </ul>
+        </footer>
+    </main>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254114283550" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+        Chat Now
+    </a>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Particles.js initialization
+        particlesJS('particles-js',
+            {
+                particles: {
+                    number: { value: 80 },
+                    color: { value: "#0ff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5 },
+                    size: { value: 3 },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: false,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false,
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    }
+                }
+            }
+        );
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Dark Mode Toggle
+        const toggleButton = document.getElementById('darkModeToggle');
+        const modeIcon = document.getElementById('modeIcon');
+
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            console.log('Toggled light mode:', document.body.classList.contains('light-mode'));
+            
+            if (document.body.classList.contains('light-mode')) {
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+                toggleButton.textContent = ' Toggle Light Mode';
+            } else {
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+                toggleButton.textContent = ' Toggle Dark Mode';
+            }
+            
+            localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Load dark mode preference
+        window.addEventListener('load', () => {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'light') {
+                document.body.classList.add('light-mode');
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+                toggleButton.textContent = ' Toggle Light Mode';
+            }
+        });
+
+        // AJAX for Newsletter Subscription
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show confirmation message
+            document.getElementById('confirmationMessage').style.display = 'block';
+            
+            // Show colorful effect
+            const colorfulEffect = document.getElementById('colorfulEffect');
+            colorfulEffect.style.display = 'block';
+            colorfulEffect.style.opacity = '1'; // Make it visible
+
+            // Reset form
+            this.reset(); 
+
+            // Hide colorful effect after a delay
+            setTimeout(() => {
+                colorfulEffect.style.opacity = '0'; // Fade out
+                setTimeout(() => {
+                    colorfulEffect.style.display = 'none'; // Hide after fade out
+                }, 500); // Match the duration of the fade out
+            }, 2000); // Show for 2 seconds
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+    </script>
+    <div class="nav">
+        <a href="eid.html">Go to Eid Greeting</a>
+        <a href="merchant.html">Go to Merchants Potential Unleashed</a>
+        <a href="blacky.html">Go to Ultimate Blacky Nightmare</a>
+    </div>  
+</body>
+</html>
